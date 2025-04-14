@@ -12,6 +12,24 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
     <link rel="stylesheet" href="/bluebike_data_visualization/static/styles.css">
+    <style>
+      /* Optional additional styles for the D3 chart */
+      .line-chart text,
+      .line-chart path,
+      .line-chart circle {
+          font-size: 12px;
+      }
+      .line-chart path {
+          fill: none;
+          stroke: #4C78A8;
+          stroke-width: 3;
+      }
+      .line-chart circle {
+          fill: #4C78A8;
+          stroke: #fff;
+          stroke-width: 1;
+      }
+    </style>
 </head>
 <body>
     <header>
@@ -27,7 +45,7 @@
             <p>The dataset comes from BlueBikes' publicly available system data, containing over 10,000 bike trips from January 2025. Each trip record includes information such as start/end times and locations, user type (member/casual), and trip duration. The data features both categorical (station names, user types) and continuous variables (trip duration, coordinates), making it ideal for diverse analytical approaches.</p>
 
             <ul>
-                <li>Feature 1: Interactive map of the city of Boston, with the bike stops shown as bubbles where the size of the buubles corresponds to the popularity of the stop</li>
+                <li>Feature 1: Interactive map of the city of Boston, with the bike stops shown as bubbles where the size of the bubbles corresponds to the popularity of the stop</li>
                 <li>Feature 2: </li>
                 <li>Feature 3: </li>
                 <li>Feature 4: </li>
@@ -46,9 +64,10 @@
             <p>Understanding when people use BlueBikes helps optimize system operations and capacity planning.</p>
             
             <div class="visualization-container">
+                <!-- This container is now used for the D3-powered line chart -->
                 <div id="hourly-trips"></div>
                 <p class="visualization-explanation">
-                    This line chart shows the overall hourly distribution of bike trips. The clear peaks during morning and evening rush hours indicate that many users rely on BlueBikes for commuting. The visualization uses a simple line chart design to clearly show temporal patterns, with careful color choices for readability.
+                    This line chart shows the overall hourly distribution of bike trips. The clear peaks during morning and evening rush hours indicate that many users rely on BlueBikes for commuting. This chart is rendered with D3.
                 </p>
             </div>
 
@@ -67,7 +86,7 @@
             <div class="visualization-container">
                 <div id="daily-usage-altair"></div>
                 <p class="visualization-explanation">
-                    This interactive visualization breaks down hourly usage patterns by day and user type. The faceted design allows for easy comparison across days, while the interactive highlighting helps focus on specific user types. The consistent color scheme maintains visual coherence with other charts.
+                    This interactive visualization breaks down hourly usage patterns by weekday and weekend and user type. The faceted design allows for easy comparison across these groups while the interactive highlighting helps focus on specific user types. The consistent color scheme maintains visual coherence with other charts.
                 </p>
             </div>
         </section>
@@ -121,11 +140,7 @@
         <p>Data visualization project for DS4200 - Information Visualization</p>
     </footer>
 
+    <!-- Load the D3 visualization code from our data.js file -->
     <script src="/bluebike_data_visualization/static/data.js"></script>
-    <script src="/bluebike_data_visualization/static/script.js"></script>
-    <script>
-        // Initialize visualizations with the data from data.js
-        initializeVisualizations(visualizationData);
-    </script>
 </body>
-</html> 
+</html>
