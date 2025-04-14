@@ -1399,23 +1399,13 @@ const visualizationData = {
     }
   },
   "station_popularity": {
-    "data": [
-      {
-        "alignmentgroup": "True",
-        "hovertemplate": "Number of Trips=%{x}<br>Station Name=%{y}<extra></extra>",
-        "legendgroup": "",
-        "marker": {
-          "color": "#636efa",
-          "pattern": {
-            "shape": ""
-          }
-        },
-        "name": "",
-        "offsetgroup": "",
-        "orientation": "h",
-        "showlegend": false,
-        "textposition": "auto",
-        "x": [
+  "data": [
+    {
+      "alignmentgroup": "True",
+      "hovertemplate": "Number of Trips=%{x}<br>Station Name=%{y}<extra></extra>",
+      "legendgroup": "",
+      "marker": {
+        "color": [
           214,
           170,
           131,
@@ -1427,8 +1417,240 @@ const visualizationData = {
           89,
           88
         ],
-        "xaxis": "x",
-        "y": [
+        "colorscale": "Blues",
+        "showscale": true,
+        "pattern": {
+          "shape": ""
+        }
+      },
+      "name": "",
+      "offsetgroup": "",
+      "orientation": "h",
+      "showlegend": false,
+      "textposition": "auto",
+      "x": [
+        214,
+        170,
+        131,
+        126,
+        114,
+        113,
+        106,
+        93,
+        89,
+        88
+      ],
+      "xaxis": "x",
+      "y": [
+        "MIT @ Mass Ave / Amherst St",
+        "Central Square @ Mass Ave / Essex St",
+        "Vassar St",
+        "Massachusetts Ave at Boylston St.",
+        "MIT Pacific",
+        "MIT Stata Center @ Vassar / Main St",
+        "Charles Circle - Charles St at Cambridge St",
+        "Harvard Square @ Mass Ave/ Dunster",
+        "South Station - 700 Atlantic Ave",
+        "Mass Ave at Albany St"
+      ],
+      "yaxis": "y",
+      "type": "bar"
+    }
+  ],
+  "layout": {
+    "template": {
+      "data": {
+        "histogram2dcontour": [
+          {
+            "type": "histogram2dcontour",
+            "colorbar": {
+              "outlinewidth": 0,
+              "ticks": ""
+            },
+            "colorscale": [
+              [
+                0.0,
+                "#0d0887"
+              ],
+              [
+                0.1111111111111111,
+                "#46039f"
+              ],
+              [
+                0.2222222222222222,
+                "#7201a8"
+              ],
+              [
+                0.3333333333333333,
+                "#9c179e"
+              ],
+              [
+                0.4444444444444444,
+                "#bd3786"
+              ],
+              [
+                0.5555555555555556,
+                "#d8576b"
+              ],
+              [
+                0.6666666666666666,
+                "#ed7953"
+              ],
+              [
+                0.7777777777777778,
+                "#fb9f3a"
+              ],
+              [
+                0.8888888888888888,
+                "#fdca26"
+              ],
+              [
+                1.0,
+                "#f0f921"
+              ]
+            ]
+          }
+        ],
+        "choropleth": [
+          {
+            "type": "choropleth",
+            "colorbar": {
+              "outlinewidth": 0,
+              "ticks": ""
+            }
+          }
+        ],
+        "histogram2d": [
+          {
+            "type": "histogram2d",
+            "colorbar": {
+              "outlinewidth": 0,
+              "ticks": ""
+            },
+            "colorscale": [
+              [
+                0.0,
+                "#0d0887"
+              ],
+              [
+                0.1111111111111111,
+                "#46039f"
+              ],
+              [
+                0.2222222222222222,
+                "#7201a8"
+              ],
+              [
+                0.3333333333333333,
+                "#9c179e"
+              ],
+              [
+                0.4444444444444444,
+                "#bd3786"
+              ],
+              [
+                0.5555555555555556,
+                "#d8576b"
+              ],
+              [
+                0.6666666666666666,
+                "#ed7953"
+              ],
+              [
+                0.7777777777777778,
+                "#fb9f3a"
+              ],
+              [
+                0.8888888888888888,
+                "#fdca26"
+              ],
+              [
+                1.0,
+                "#f0f921"
+              ]
+            ]
+          }
+        ]
+      },
+      "xaxis": {
+        "anchor": "y",
+        "domain": [
+          0.0,
+          1.0
+        ],
+        "constrain": "domain",
+        "title": {
+          "text": "Number of Trips"
+        },
+        "tickmode": "linear",
+        "tick0": 0,
+        "dtick": 1,
+        "ticktext": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "tickvals": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ]
+      },
+      "yaxis": {
+        "anchor": "x",
+        "domain": [
+          0.0,
+          1.0
+        ],
+        "autorange": "reversed",
+        "constrain": "domain",
+        "title": {
+          "text": "Station Name"
+        },
+        "categoryorder": "array",
+        "categoryarray": [
           "MIT @ Mass Ave / Amherst St",
           "Central Square @ Mass Ave / Essex St",
           "Vassar St",
@@ -1439,11 +1661,18 @@ const visualizationData = {
           "Harvard Square @ Mass Ave/ Dunster",
           "South Station - 700 Atlantic Ave",
           "Mass Ave at Albany St"
-        ],
-        "yaxis": "y",
-        "type": "bar"
-      }
-    ],
+        ]
+      },
+      "legend": {
+        "tracegroupgap": 0
+      },
+      "title": {
+        "text": "Top 10 Most Popular Starting Stations"
+      },
+      "barmode": "relative"
+    }
+  }
+}
     "layout": {
       "template": {
         "data": {
