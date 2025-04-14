@@ -1,4 +1,102 @@
 const visualizationData = {
+  // Set up margins and chart dimensions
+const margin = {top: 20, right: 30, bottom: 40, left: 50};
+const width = 800 - margin.left - margin.right;
+const height = 400 - margin.top - margin.bottom;
+
+// Sample data: hourly trips data (replace this with your actual data as needed)
+const hourlyTripsData = [
+  { hour: 0,  trips: 85 },
+  { hour: 1,  trips: 60 },
+  { hour: 2,  trips: 40 },
+  { hour: 3,  trips: 10 },
+  { hour: 4,  trips: 32 },
+  { hour: 5,  trips: 54 },
+  { hour: 6,  trips: 199 },
+  { hour: 7,  trips: 528 },
+  { hour: 8,  trips: 936 },
+  { hour: 9,  trips: 649 },
+  { hour: 10, trips: 464 },
+  { hour: 11, trips: 449 },
+  { hour: 12, trips: 544 },
+  { hour: 13, trips: 538 },
+  { hour: 14, trips: 570 },
+  { hour: 15, trips: 681 },
+  { hour: 16, trips: 898 },
+  { hour: 17, trips: 1025 },
+  { hour: 18, trips: 765 },
+  { hour: 19, trips: 518 },
+  { hour: 20, trips: 394 },
+  { hour: 21, trips: 252 },
+  { hour: 22, trips: 188 },
+  { hour: 23, trips: 115 }
+];
+
+// Create an SVG element inside the #chartContainer div
+const svg = d3.select("#chartContainer")
+              .append("svg")
+              .attr("width", width + margin.left + margin.right)
+              .attr("height", height + margin.top + margin.bottom)
+              .attr("class", "line-chart")
+              .append("g")
+              .attr("transform", `translate(${margin.left},${margin.top})`);
+
+// Set up the x-scale: Hours from 0 to 23
+const xScale = d3.scaleLinear()
+                 .domain([0, 23])
+                 .range([0, width]);
+
+// Set up the y-scale: 0 to maximum number of trips
+const yScale = d3.scaleLinear()
+                 .domain([0, d3.max(hourlyTripsData, d => d.trips)])
+                 .nice()
+                 .range([height, 0]);
+
+// Add the x-axis and label it
+svg.append("g")
+   .attr("transform", `translate(0, ${height})`)
+   .call(d3.axisBottom(xScale).ticks(24))
+   .append("text")
+   .attr("fill", "#000")
+   .attr("x", width / 2)
+   .attr("y", 35)
+   .attr("text-anchor", "middle")
+   .text("Hour of Day");
+
+// Add the y-axis and label it
+svg.append("g")
+   .call(d3.axisLeft(yScale))
+   .append("text")
+   .attr("fill", "#000")
+   .attr("transform", "rotate(-90)")
+   .attr("x", -height / 2)
+   .attr("y", -40)
+   .attr("text-anchor", "middle")
+   .text("Total Number of Trips");
+
+// Define the line generator using a monotone curve for smoothness
+const lineGenerator = d3.line()
+                        .x(d => xScale(d.hour))
+                        .y(d => yScale(d.trips))
+                        .curve(d3.curveMonotoneX);
+
+// Append the line path to the SVG
+svg.append("path")
+   .datum(hourlyTripsData)
+   .attr("d", lineGenerator);
+
+// Optionally, add circles at each data point for interactivity or clarity
+svg.selectAll("circle")
+   .data(hourlyTripsData)
+   .enter()
+   .append("circle")
+   .attr("cx", d => xScale(d.hour))
+   .attr("cy", d => yScale(d.trips))
+   .attr("r", 4)
+   .on("mouseover", (event, d) => {
+     console.log(`Hour: ${d.hour}, Trips: ${d.trips}`);
+   });
+  
   "hourly_trips": {
     "config": {
       "view": {
